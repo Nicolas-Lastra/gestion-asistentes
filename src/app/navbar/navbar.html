@@ -1,0 +1,24 @@
+<div class="d-flex">
+
+	<div ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills flex-column" orientation="vertical">
+
+		<ng-container ngbNavItem="studentsList">
+			<button (click)="navigate('studentsList')" ngbNavLink>Students list</button>
+		</ng-container>
+
+		<ng-container ngbNavItem="addForm">
+			<button (click)="navigate('addForm')" ngbNavLink>Add Student</button>
+		</ng-container>
+
+		<ng-container ngbNavItem="deleteForm">
+			<button (click)="navigate('deleteForm')" ngbNavLink>Delete Student</button>
+		</ng-container>
+
+		<ng-container ngbNavItem="modifyForm">
+			<button (click)="navigate('modifyForm')" ngbNavLink>Modify Student</button>
+		</ng-container>
+
+	</div>
+
+	<div [ngbNavOutlet]="nav" class="ms-4"></div>
+</div>

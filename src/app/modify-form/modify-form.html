@@ -1,0 +1,102 @@
+<div class="add-form">
+    <h2 class="form-title">Modify student</h2>
+
+    <form class="form-container" [formGroup]="modifyForm" (ngSubmit)="onSubmit()">
+
+        <!-- ID -->
+        <mat-form-field class="form-item">
+
+            <mat-label>ID</mat-label>
+            <input matInput type="number" placeholder="10" formControlName="id" />
+
+            <mat-error *ngIf="modifyForm.get('id')?.touched && modifyForm.get('id')?.hasError('required')">
+                The ID is required
+            </mat-error>
+
+            <mat-error
+                *ngIf="modifyForm.get('id')?.touched && modifyForm.get('id')?.hasError('min') && !modifyForm.get('id')?.hasError('required')">
+                Invalid ID
+            </mat-error>
+
+        </mat-form-field>
+
+        <!-- Name -->
+        <mat-form-field class="form-item">
+
+            <mat-label>Name</mat-label>
+            <input matInput type="text" placeholder="Nombre" formControlName="name" />
+
+            <mat-error *ngIf="modifyForm.get('name')?.touched && modifyForm.get('name')?.hasError('required')">
+                The name is required
+            </mat-error>
+
+            <mat-error
+                *ngIf="modifyForm.get('name')?.touched && modifyForm.get('name')?.hasError('minlength') && !modifyForm.get('name')?.hasError('required')">
+                Invalid name
+            </mat-error>
+
+        </mat-form-field>
+
+        <!-- Surame -->
+        <mat-form-field class="form-item">
+
+            <mat-label>Surame</mat-label>
+            <input matInput type="text" placeholder="Surname" formControlName="surname" />
+
+            <mat-error *ngIf="modifyForm.get('surname')?.touched && modifyForm.get('surname')?.hasError('required')">
+                The surname is required
+            </mat-error>
+
+            <mat-error
+                *ngIf="modifyForm.get('surname')?.touched && modifyForm.get('surname')?.hasError('minlength') && !modifyForm.get('surname')?.hasError('required')">
+                Invalid surname
+            </mat-error>
+
+        </mat-form-field>
+
+        <!-- DNI -->
+        <mat-form-field class="form-item">
+
+            <mat-label>Dni</mat-label>
+            <input matInput type="number" placeholder="181204001" formControlName="dni" />
+
+            <mat-error *ngIf="modifyForm.get('dni')?.touched && modifyForm.get('dni')?.hasError('required')">
+                The DNI is required
+            </mat-error>
+
+            <mat-error
+                *ngIf="modifyForm.get('dni')?.touched && modifyForm.get('dni')?.hasError('min') && !modifyForm.get('dni')?.hasError('required')">
+                Invalid DNI
+            </mat-error>
+
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field class="form-item">
+
+            <mat-label>Email</mat-label>
+            <input matInput type="email" placeholder="mail@example.com" formControlName="email" />
+
+            <mat-error *ngIf="modifyForm.get('email')?.touched && modifyForm.get('email')?.hasError('required')">
+                The email is required
+            </mat-error>
+
+            <mat-error
+                *ngIf="modifyForm.get('email')?.touched && modifyForm.get('email')?.hasError('email') && !modifyForm.get('email')?.hasError('required')">
+                Invalid email
+            </mat-error>
+
+        </mat-form-field>
+
+        <button mat-raised-button type="submit" [disabled]="modifyForm.invalid" class="form-item">Submit</button>
+
+        <button mat-raised-button type="button" (click)="onReset()" class="form-item">Reset</button>
+
+        <!-- Information submitted -->
+        <div *ngIf="res">
+            <!-- <h3>Form submited</h3>
+            <p>{{res | json }}</p> -->
+            <!-- Logica para un toast con bootstrap -->
+        </div>
+    </form>
+</div>

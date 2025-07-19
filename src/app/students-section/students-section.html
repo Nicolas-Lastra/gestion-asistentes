@@ -1,0 +1,29 @@
+<div class="d-flex">
+
+  <div class="mx-2">
+    <app-navbar (activeSection)="activeSection = $event"></app-navbar>
+  </div>
+
+  <div class="flex-grow-1">
+    <ng-container *ngIf="activeSection === 'studentsList'">
+      <app-students-table [students]="students"></app-students-table>
+    </ng-container>
+
+    <ng-container *ngIf="activeSection === 'addForm'">
+      <app-add-form (studentAdded)="addStudent($event)"></app-add-form>
+    </ng-container>
+
+    <ng-container *ngIf="activeSection === 'deleteForm'">
+      <app-delete-form (studentDeleted)="deleteStudent($event)"></app-delete-form>
+    </ng-container>
+
+    <ng-container *ngIf="activeSection === 'modifyForm'">
+      <app-modify-form (studentModified)="modifyStudent($event)"></app-modify-form>
+    </ng-container>
+  </div>
+
+</div>
+
+<!-- Testing -->
+<!-- <app-students-table [students]="students"></app-students-table>
+<app-add-form (studentAdded)="addStudent($event)"></app-add-form> -->
