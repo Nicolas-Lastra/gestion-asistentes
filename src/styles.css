@@ -13,3 +13,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: #f44336;
   color: #fff;
 }
+
+.form-container {
+    display: grid;
+}
+
+.form-item {
+    margin: 5px 5px;
+}
