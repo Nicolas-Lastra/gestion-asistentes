@@ -1,0 +1,22 @@
+[
+  { "id": 1, "name": "juan", "surname": "pérez", "dni": "12345678", "email": "juan.perez@example.com" },
+  { "id": 2, "name": "maría", "surname": "gómez", "dni": "23456789", "email": "maria.gomez@example.com" },
+  { "id": 3, "name": "carlos", "surname": "ramírez", "dni": "34567890", "email": "carlos.ramirez@example.com" },
+  { "id": 4, "name": "ana", "surname": "lópez", "dni": "45678901", "email": "ana.lopez@example.com" },
+  { "id": 5, "name": "luis", "surname": "Torres", "dni": "56789012", "email": "luis.torres@example.com" },
+  { "id": 6, "name": "laura", "surname": "Martínez", "dni": "67890123", "email": "laura.martinez@example.com" },
+  { "id": 7, "name": "Pedro", "surname": "García", "dni": "78901234", "email": "pedro.garcia@example.com" },
+  { "id": 8, "name": "Sofía", "surname": "Rojas", "dni": "89012345", "email": "sofia.rojas@example.com" },
+  { "id": 9, "name": "Diego", "surname": "Morales", "dni": "90123456", "email": "diego.morales@example.com" },
+  { "id": 10, "name": "Valentina", "surname": "Silva", "dni": "11223344", "email": "valentina.silva@example.com" },
+  { "id": 11, "name": "Tomás", "surname": "Herrera", "dni": "22334455", "email": "tomas.herrera@example.com" },
+  { "id": 12, "name": "Camila", "surname": "Reyes", "dni": "33445566", "email": "camila.reyes@example.com" },
+  { "id": 13, "name": "Mateo", "surname": "Ortega", "dni": "44556677", "email": "mateo.ortega@example.com" },
+  { "id": 14, "name": "agustina", "surname": "Fernández", "dni": "55667788", "email": "agustina.fernandez@example.com" },
+  { "id": 15, "name": "nicolás", "surname": "Soto", "dni": "66778899", "email": "nicolas.soto@example.com" },
+  { "id": 16, "name": "Julieta", "surname": "Castro", "dni": "77889900", "email": "julieta.castro@example.com" },
+  { "id": 17, "name": "Gabriel", "surname": "Navarro", "dni": "88990011", "email": "gabriel.navarro@example.com" },
+  { "id": 18, "name": "Martina", "surname": "Romero", "dni": "99001122", "email": "martina.romero@example.com" },
+  { "id": 19, "name": "Facundo", "surname": "Méndez", "dni": "10111213", "email": "facundo.mendez@example.com" },
+  { "id": 20, "name": "Florencia", "surname": "Ibarra", "dni": "12131415", "email": "florencia.ibarra@example.com" }
+]
