@@ -6,11 +6,12 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { ViewChild, AfterViewInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { RoutePaths } from '../../../../shared/routes';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @Component({
   selector: 'app-students-table',
-  imports: [MatTableModule, FullnamePipe, MatPaginatorModule, RouterModule],
+  imports: [MatTableModule, FullnamePipe, MatPaginatorModule, RouterModule, MatButtonModule],
   templateUrl: './students-table.html',
   styleUrl: './students-table.css'
 })

@@ -4,10 +4,11 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { ViewChild, AfterViewInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Course } from '../../../../shared/entities';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-courses-table',
-  imports: [MatTableModule, MatPaginatorModule, RouterModule],
+  imports: [MatTableModule, MatPaginatorModule, RouterModule, MatButtonModule],
   templateUrl: './courses-table.html',
   styleUrl: './courses-table.css'
 })
