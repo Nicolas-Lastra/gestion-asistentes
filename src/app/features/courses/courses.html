@@ -1,0 +1,13 @@
+<div class="d-flex pt-4">
+
+    <div class="flex-grow-1">
+        <div *ngIf="courses; else loading">
+            <app-courses-table (deleteEvent)="deleteCourse($event)" [courses]="courses"></app-courses-table>
+        </div>
+
+        <ng-template #loading>
+            <mat-spinner></mat-spinner>
+        </ng-template>
+    </div>
+
+</div>
