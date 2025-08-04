@@ -5,6 +5,7 @@ import { Students } from './features/students/students';
 import { ViewStudent } from './features/students/view-student/view-student';
 import { ViewCourse } from './features/courses/view-course/view-course';
 import { EditStudent } from './features/students/edit-student/edit-student';
+import { EditCourse } from './features/courses/edit-course/edit-course';
 
 export const routes: Routes = [
     
@@ -35,6 +36,10 @@ export const routes: Routes = [
     {
         path: "view-course",
         component: ViewCourse
+    },
+    {
+        path: "edit-course",
+        component: EditCourse
     },
     // {
     //     path: RoutePaths.HOME,
