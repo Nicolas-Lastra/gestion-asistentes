@@ -1,0 +1,79 @@
+<div class="add-form">
+    <h2 class="form-title">Modify student</h2>
+
+    <form class="form-container" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+        <!-- Name -->
+        <mat-form-field class="form-item">
+
+            <mat-label>Name</mat-label>
+            <input matInput type="text" placeholder={{student.name}} formControlName="name" />
+
+            <mat-error *ngIf="editForm.get('name')?.touched && editForm.get('name')?.hasError('required')">
+                The name is required
+            </mat-error>
+
+            <mat-error
+                *ngIf="editForm.get('name')?.touched && editForm.get('name')?.hasError('minlength') && !editForm.get('name')?.hasError('required')">
+                Invalid name
+            </mat-error>
+
+        </mat-form-field>
+
+        <!-- Surame -->
+        <mat-form-field class="form-item">
+
+            <mat-label>Surame</mat-label>
+            <input matInput type="text" placeholder={{student.surname}} formControlName="surname" />
+
+            <mat-error *ngIf="editForm.get('surname')?.touched && editForm.get('surname')?.hasError('required')">
+                The surname is required
+            </mat-error>
+
+            <mat-error
+                *ngIf="editForm.get('surname')?.touched && editForm.get('surname')?.hasError('minlength') && !editForm.get('surname')?.hasError('required')">
+                Invalid surname
+            </mat-error>
+
+        </mat-form-field>
+
+        <!-- DNI -->
+        <mat-form-field class="form-item">
+
+            <mat-label>Dni</mat-label>
+            <input matInput type="text" placeholder={{student.dni}} formControlName="dni" />
+
+            <mat-error *ngIf="editForm.get('dni')?.touched && editForm.get('dni')?.hasError('required')">
+                The DNI is required
+            </mat-error>
+
+            <mat-error
+                *ngIf="editForm.get('dni')?.touched && editForm.get('dni')?.hasError('min') && !editForm.get('dni')?.hasError('required')">
+                Invalid DNI
+            </mat-error>
+
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field class="form-item">
+
+            <mat-label>Email</mat-label>
+            <input matInput type="email" placeholder={{student.email}} formControlName="email" />
+
+            <mat-error *ngIf="editForm.get('email')?.touched && editForm.get('email')?.hasError('required')">
+                The email is required
+            </mat-error>
+
+            <mat-error
+                *ngIf="editForm.get('email')?.touched && editForm.get('email')?.hasError('email') && !editForm.get('email')?.hasError('required')">
+                Invalid email
+            </mat-error>
+
+        </mat-form-field>
+
+        <button mat-raised-button type="submit" [disabled]="editForm.invalid" class="form-item">Submit</button>
+
+        <button mat-raised-button type="button" (click)="onReset()" class="form-item">Reset</button>
+        
+    </form>
+</div>
