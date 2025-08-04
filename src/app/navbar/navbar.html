@@ -2,20 +2,16 @@
 
 	<div ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills flex-column" orientation="vertical">
 
-		<ng-container ngbNavItem="studentsList">
-			<button class="navbar-item" (click)="navigate('studentsList')" ngbNavLink>Students list</button>
+		<ng-container ngbNavItem="studentsSection">
+			<button class="navbar-item" routerLink="/students" ngbNavLink>Students</button>
 		</ng-container>
 
-		<ng-container ngbNavItem="addForm">
-			<button class="navbar-item" (click)="navigate('addForm')" ngbNavLink>Add Student</button>
+		<ng-container ngbNavItem="coursesSection">
+			<button class="navbar-item" routerLink="/courses" ngbNavLink>Courses</button>
 		</ng-container>
 
-		<ng-container ngbNavItem="deleteForm">
-			<button class="navbar-item" (click)="navigate('deleteForm')" ngbNavLink>Delete Student</button>
-		</ng-container>
-
-		<ng-container ngbNavItem="modifyForm">
-			<button class="navbar-item" (click)="navigate('modifyForm')" ngbNavLink>Modify Student</button>
+		<ng-container ngbNavItem="registrationsSection">
+			<button class="navbar-item" routerLink="/registrations" ngbNavLink>Registrations</button>
 		</ng-container>
 
 	</div>
