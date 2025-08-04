@@ -31,7 +31,6 @@ export class CoursesTable implements AfterViewInit {
   }
 
   viewDetails(course: Course) {
-    console.log('Executing viewDetails()')
     this.router.navigate(['/view-course'], {
       state: { course: course }
     }
@@ -39,7 +38,12 @@ export class CoursesTable implements AfterViewInit {
   }
 
   deleteCourse(course: Course) {
-      console.log('Executing deleteCourse() from courses-table.ts')
-      this.deleteEvent.emit(course);
-    }
+    this.deleteEvent.emit(course);
+  }
+
+  editCourse(course: Course) {
+    this.router.navigate(['/edit-course'], {
+      state: { course: course }
+    });
+  }
 }
