@@ -25,7 +25,6 @@ export class Courses {
   }
 
   deleteCourse(course: Course) {
-    console.log('Executing deleteCourse() from courses.ts')
 
     this.coursesApi.deleteCourse(course).subscribe(() => {
       this.coursesApi.getCourses().subscribe(courses => {

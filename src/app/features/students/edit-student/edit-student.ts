@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Student } from '../../../../shared/entities';
 import { Router } from '@angular/router';
-import { CommonModule, JsonPipe } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -58,9 +58,7 @@ export class EditStudent implements OnInit {
         ...this.student,
         ...this.editForm.value
       };
-
-      console.log('Sending PUT request:', updatedStudent);
-
+      
       this.studentsApi.editStudent(updatedStudent).subscribe({
         next: (res) => {
           this._snackbar.open('Student updated successfully', 'Close', {

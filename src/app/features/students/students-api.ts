@@ -21,7 +21,6 @@ export class StudentsAPI {
   }
 
   editStudent(student: Student): Observable<Student> {
-    console.log('Sending PUT request with student: ', student)
     return this.http.put<Student>(`${this.baseUrl}/students/${student.id}`, student).pipe(delay(1000));
   }
 }

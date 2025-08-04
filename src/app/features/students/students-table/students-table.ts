@@ -21,7 +21,6 @@ export class StudentsTable implements AfterViewInit {
   }
 
   @Output() deleteEvent = new EventEmitter<Student>();
-  @Output() editEvent = new EventEmitter<Student>;
 
   constructor(private router: Router) { }
 
@@ -35,7 +34,6 @@ export class StudentsTable implements AfterViewInit {
   }
 
   viewDetails(student: Student) {
-    console.log('Executing viewDetails()')
     this.router.navigate(['/view-student'], {
       state: { student: student }
     }
@@ -49,7 +47,6 @@ export class StudentsTable implements AfterViewInit {
   }
 
   deleteStudent(student: Student) {
-    console.log('Executing deleteStudent() from students-table.ts')
     this.deleteEvent.emit(student);
   }
 }

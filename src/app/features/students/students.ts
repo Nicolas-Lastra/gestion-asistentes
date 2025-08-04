@@ -26,7 +26,6 @@ export class Students {
   }
 
   deleteStudent(student: Student) {
-    console.log('Executing deleteStudent() from students.ts')
 
     this.studentsApi.deleteStudent(student).subscribe(() => {
       this.studentsApi.getStudents().subscribe(students => {
@@ -46,5 +45,5 @@ export class Students {
       panelClass: ['success-snackbar']
     });
   }
-  
+
 }
