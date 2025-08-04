@@ -1,0 +1,16 @@
+<mat-card class="student-card" appearance="outlined">
+
+    <mat-card-title-group>
+      <mat-card-title>{{student.name | fullname: student.surname}}</mat-card-title>
+      <mat-card-subtitle>Student</mat-card-subtitle>
+    </mat-card-title-group>
+
+    <img mat-card-lg-image src="https://avatar.iran.liara.run/public" >
+    <mat-card-content>
+    <p>ID: {{student.id}}</p>
+    <p>DNI: {{student.dni}}</p>
+    <p>Email: {{student.email}}</p>
+    
+  </mat-card-content>
+
+</mat-card>
