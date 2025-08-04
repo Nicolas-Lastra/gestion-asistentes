@@ -5,6 +5,7 @@ import { FullnamePipe } from '../../../../shared/pipes/fullname-pipe';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { ViewChild, AfterViewInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { RoutePaths } from '../../../../shared/routes';
 
 
 @Component({
@@ -34,14 +35,14 @@ export class StudentsTable implements AfterViewInit {
   }
 
   viewDetails(student: Student) {
-    this.router.navigate(['/view-student'], {
+    this.router.navigate([RoutePaths.VIEWSTUDENT], {
       state: { student: student }
     }
     );
   }
 
   editStudent(student: Student) {
-    this.router.navigate(['/edit-student'], {
+    this.router.navigate([RoutePaths.EDITSTUDENT], {
       state: { student: student }
     });
   }

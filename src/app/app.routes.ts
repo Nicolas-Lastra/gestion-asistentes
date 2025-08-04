@@ -1,21 +1,24 @@
 import { Routes } from '@angular/router';
 import { Home } from './home/home';
 import { RoutePaths } from '../shared/routes';
-import { Students } from './features/students/students';
 import { ViewStudent } from './features/students/view-student/view-student';
 import { ViewCourse } from './features/courses/view-course/view-course';
 import { EditStudent } from './features/students/edit-student/edit-student';
 import { EditCourse } from './features/courses/edit-course/edit-course';
+import { NotFoundComponent } from './not-found-component/not-found-component';
 
 export const routes: Routes = [
-    
     {
-        path: '',
-        component: Students
+        path:'',
+        component: Home
+    },
+    {
+        path: RoutePaths.HOME,
+        component: Home
     },
     {
         path: RoutePaths.STUDENTS,
-        component: Students
+        loadComponent: () => import('./features/students/students').then(m => m.Students)
     },
     {
         path: RoutePaths.COURSES,
@@ -26,35 +29,27 @@ export const routes: Routes = [
         loadComponent: () => import('./features/registrations/registrations').then(m => m.Registrations)
     },
     {
-        path: "view-student",
+        path: RoutePaths.VIEWSTUDENT,
         component: ViewStudent
     },
     {
-        path: "edit-student",
+        path: RoutePaths.EDITSTUDENT,
         component: EditStudent
     },
     {
-        path: "view-course",
+        path: RoutePaths.VIEWCOURSE,
         component: ViewCourse
     },
     {
-        path: "edit-course",
+        path: RoutePaths.EDITCOURSE,
         component: EditCourse
     },
-    // {
-    //     path: RoutePaths.HOME,
-    //     component: Home
-    // },
-    // {
-    //     path: RoutePaths.USERS,
-    //     component: User
-    // },
-    // {
-    //     path: "users/:id",
-    //     component: User
-    // }
-    // {
-    //     path: "**",
-    //     component: NotFoundComponent
-    // }
+    {
+        path: RoutePaths.DATABASE,
+        redirectTo: 'http://localhost:3000'
+    },
+    {
+        path: "**",
+        component: NotFoundComponent
+    }
 ];
