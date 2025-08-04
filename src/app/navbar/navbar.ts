@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 
@@ -9,5 +9,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.css'
 })
 export class Navbar {
-  active = 'studentsList';
+  active = 'homeSection';
 }

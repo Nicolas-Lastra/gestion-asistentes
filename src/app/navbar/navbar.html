@@ -2,6 +2,10 @@
 
 	<div ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills flex-column" orientation="vertical">
 
+		<ng-container ngbNavItem="homeSection">
+			<button class="navbar-item" routerLink="/home" ngbNavLink>Home</button>
+		</ng-container>
+
 		<ng-container ngbNavItem="studentsSection">
 			<button class="navbar-item" routerLink="/students" ngbNavLink>Students</button>
 		</ng-container>
