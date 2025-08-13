@@ -1,17 +1,13 @@
-<app-toolbar></app-toolbar>
+<app-toolbar *ngIf="isLoggedIn$ | async"></app-toolbar>
 
 <div class="d-flex pt-4">
+  <div class="mx-2" *ngIf="isLoggedIn$ | async">
+    <app-navbar></app-navbar>
+  </div>
 
-    <!-- Navbar -->
-    <div class="mx-2">
-        <app-navbar></app-navbar>
-    </div>
-
-    <!-- Router Outlet Management -->
-    <div class="flex-grow-1">
-        <router-outlet></router-outlet>
-    </div>
-
+  <div class="flex-grow-1">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 
 <!-- Footer -->
