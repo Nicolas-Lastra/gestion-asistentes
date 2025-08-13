@@ -12,3 +12,14 @@ export interface Course {
   credits: number;
   id: string;
 }
+
+export interface User {
+  name: string;
+  password: string;
+  role: 'usuario' | 'admin';
+}
+
+export interface Credentials {
+  name: string;
+  password: string;
+}
