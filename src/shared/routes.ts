@@ -8,5 +8,6 @@ export enum RoutePaths {
     VIEWCOURSE = 'view-course',
     EDITCOURSE = 'edit-course',
     REGISTRATIONS = 'registrations',
-    DATABASE = 'http://localhost:3000'
+    DATABASE = 'http://localhost:3000',
+    LOGIN = 'login'
 }
