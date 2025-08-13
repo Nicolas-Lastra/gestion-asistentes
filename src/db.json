@@ -1,4 +1,16 @@
 {
+  "users": [
+    {
+      "name": "user",
+      "password": "user",
+      "role": "user"
+    },
+    {
+      "name": "admin",
+      "password": "admin",
+      "role": "admin"
+    }
+  ],
   "courses": [
     {
       "name": "Matemáticas",
