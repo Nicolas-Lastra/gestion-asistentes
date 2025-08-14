@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { delay, Observable } from 'rxjs';
 import { Course } from '../../../shared/entities';
+import { RoutePaths } from '../../../shared/routes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesApi {
 
-  baseUrl = "http://localhost:3000";
+  baseUrl = RoutePaths.DATABASE;
 
   constructor(private http: HttpClient) { }
 

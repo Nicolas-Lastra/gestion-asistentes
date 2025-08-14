@@ -8,6 +8,7 @@ export enum RoutePaths {
     VIEWCOURSE = 'view-course',
     EDITCOURSE = 'edit-course',
     REGISTRATIONS = 'registrations',
-    DATABASE = 'http://localhost:3000',
+    DATABASE = 'https://689defdfce755fe6978a8fa7.mockapi.io/api/v1',
+    // DATABASE = 'http://localhost:3000',
     LOGIN = 'login'
 }

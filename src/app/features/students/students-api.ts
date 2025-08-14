@@ -24,4 +24,5 @@ export class StudentsAPI {
   editStudent(student: Student): Observable<Student> {
     return this.http.put<Student>(`${this.baseUrl}/${RoutePaths.STUDENTS}/${student.id}`, student).pipe(delay(1000));
   }
+
 }
