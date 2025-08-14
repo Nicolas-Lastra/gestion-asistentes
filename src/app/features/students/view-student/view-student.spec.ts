@@ -1,6 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Router } from '@angular/router';
 import { ViewStudent } from './view-student';
+
+const routerStub = {
+  getCurrentNavigation: () => ({
+    extras: {
+      state: {
+        student: { id: '1', name: 'John', surname: 'Doe', dni: '12345678', email: 'john@example.com' }
+      }
+    }
+  })
+};
 
 describe('ViewStudent', () => {
   let component: ViewStudent;
@@ -8,7 +18,8 @@ describe('ViewStudent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ViewStudent]
+      imports: [ViewStudent],
+      providers: [{ provide: Router, useValue: routerStub }]
     })
     .compileComponents();
 
@@ -18,6 +29,8 @@ describe('ViewStudent', () => {
   });
 
   it('should create', () => {
+    const fixture = TestBed.createComponent(ViewStudent);
+    const comp = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 });
