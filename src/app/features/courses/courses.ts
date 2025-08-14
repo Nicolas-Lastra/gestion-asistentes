@@ -5,7 +5,8 @@ import { JsonPipe, CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { CoursesTable } from './courses-table/courses-table';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
+import { AuthService } from '../../../shared/services/auth-service';
 
 @Component({
   selector: 'app-courses',
@@ -15,8 +16,12 @@ import { switchMap } from 'rxjs';
 })
 export class Courses {
 
+  isAdmin$!: Observable<boolean>;
+
   courses!: Course[];
-  constructor(private coursesApi: CoursesApi, private _snackBar: MatSnackBar) { }
+  constructor(private coursesApi: CoursesApi, private _snackBar: MatSnackBar, private auth: AuthService) {
+    this.isAdmin$ = this.auth.isAdmin$;
+  }
 
   ngOnInit() {
     this.coursesApi.getCourses().subscribe(courses => {

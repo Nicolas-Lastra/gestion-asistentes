@@ -2,7 +2,11 @@
 
     <div class="flex-grow-1">
         <div *ngIf="students; else loading">
-            <app-students-table (deleteEvent)="deleteStudent($event)" [students]="students"></app-students-table>
+            <app-students-table
+                (deleteEvent)="deleteStudent($event)"
+                [students]="students"
+                [isAdmin]="isAdmin$ | async">
+            </app-students-table>
         </div>
 
         <ng-template #loading>

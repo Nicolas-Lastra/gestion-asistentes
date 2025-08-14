@@ -22,6 +22,8 @@ export class StudentsTable implements AfterViewInit {
     this.dataSource.data = value;
   }
 
+  @Input() isAdmin: boolean | null = false;
+
   @Output() deleteEvent = new EventEmitter<Student>();
 
   constructor(private router: Router) { }

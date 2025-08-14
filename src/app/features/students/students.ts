@@ -3,10 +3,11 @@ import { StudentsAPI } from './students-api';
 import { Student } from '../../../shared/entities';
 import { CommonModule } from '@angular/common';
 import { StudentsTable } from "./students-table/students-table";
-import { switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../shared/services/auth-service';
 
 @Component({
   selector: 'app-students',
@@ -16,8 +17,12 @@ import { Router } from '@angular/router';
 })
 export class Students {
 
+  isAdmin$!: Observable<boolean>;
+
   students!: Student[];
-  constructor(private studentsApi: StudentsAPI, private _snackBar: MatSnackBar, private router: Router) { }
+  constructor(private studentsApi: StudentsAPI, private _snackBar: MatSnackBar, private router: Router, private auth: AuthService) {
+    this.isAdmin$ = this.auth.isAdmin$;
+  }
 
   ngOnInit() {
     this.studentsApi.getStudents().subscribe(students => {

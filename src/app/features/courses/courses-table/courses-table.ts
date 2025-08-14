@@ -18,6 +18,8 @@ export class CoursesTable implements AfterViewInit {
     this.dataSource.data = value;
   }
 
+  @Input() isAdmin: boolean | null = false;
+
   @Output() deleteEvent = new EventEmitter<Course>();
 
   constructor(private router: Router) { }
