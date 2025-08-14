@@ -16,7 +16,7 @@ export interface Course {
 export interface User {
   name: string;
   password: string;
-  role: 'usuario' | 'admin';
+  role: 'user' | 'admin';
 }
 
 export interface Credentials {
