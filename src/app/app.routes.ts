@@ -62,7 +62,7 @@ export const routes: Routes = [
     },
     {
         path: RoutePaths.DATABASE,
-        redirectTo: 'http://localhost:3000'
+        redirectTo: 'https://689defdfce755fe6978a8fa7.mockapi.io/api/v1'
     },
     {
         path: "**",
