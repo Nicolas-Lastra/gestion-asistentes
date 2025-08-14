@@ -14,9 +14,11 @@
 			<button class="navbar-item" routerLink="/courses" ngbNavLink>Courses</button>
 		</ng-container>
 
+		@if(isAdmin$ | async) {
 		<ng-container ngbNavItem="registrationsSection">
 			<button class="navbar-item" routerLink="/registrations" ngbNavLink>Registrations</button>
 		</ng-container>
+		}
 
 	</div>
 
