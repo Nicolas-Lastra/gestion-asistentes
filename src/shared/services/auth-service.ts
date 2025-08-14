@@ -10,8 +10,14 @@ import { Credentials, User } from '../entities';
 export class AuthService {
 
   private baseUrl = 'http://localhost:3000/users';
+
   private _isLoggedIn$ = new BehaviorSubject<boolean>(this.hasStoredUser());
   readonly isLoggedIn$ = this._isLoggedIn$.asObservable();
+
+  private _user$ = new BehaviorSubject<User | null>(this.getCurrentUser());
+  readonly user$ = this._user$.asObservable();
+
+  readonly isAdmin$ = this.user$.pipe(map(u => u?.role === 'admin'));
 
   private currentUser: User | null = this.getCurrentUser();
 
@@ -31,6 +37,7 @@ export class AuthService {
           if (user) {
             this.currentUser = user;
             localStorage.setItem('user', JSON.stringify(user));
+            this._user$.next(user); 
             this._isLoggedIn$.next(true);
             return true;
           }
@@ -41,13 +48,17 @@ export class AuthService {
   }
 
   logout(): void {
-    this.currentUser = null;
     localStorage.removeItem('user');
+    this._user$.next(null);
     this._isLoggedIn$.next(false);
   }
 
   isLoggedIn(): boolean {
-    return this._isLoggedIn$.value;
+    return !!this._user$.value;
+  }
+
+  isAdmin(): boolean {
+    return this._user$.value?.role === 'admin';
   }
 
   getCurrentUser(): User | null {
