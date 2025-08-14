@@ -37,7 +37,7 @@ export const routes: Routes = [
     },
     {
         path: RoutePaths.REGISTRATIONS,
-        canActivate: [authGuard],
+        canActivate: [authGuard, isAdminGuard],
         loadComponent: () => import('./features/registrations/registrations').then(m => m.Registrations)
     },
     {
