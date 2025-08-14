@@ -1,0 +1,7 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.spacer { flex: 1; }
+.user { opacity: 0.8; }

@@ -1,1 +1,12 @@
-<h1>Gestión Asistentes</h1>
+<header class="toolbar">
+  <h1>Gestión Asistentes</h1>
+
+  <div class="spacer"></div>
+
+  <!-- Muestra usuario y rol -->
+  <span class="user" *ngIf="user$ | async as user">
+    {{ user.name }} ({{ user.role }})
+  </span>
+
+  <button mat-button (click)="logout()">Log out</button>
+</header>
