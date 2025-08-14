@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of, map, catchError, BehaviorSubject } from 'rxjs';
+import { Observable, of, map, BehaviorSubject } from 'rxjs';
 import { Credentials, User } from '../entities';
 
 @Injectable({
@@ -9,7 +8,10 @@ import { Credentials, User } from '../entities';
 
 export class AuthService {
 
-  private baseUrl = 'http://localhost:3000/users';
+  private users: User[] = [
+    { name: 'user', password: 'user', role: 'user' },
+    { name: 'admin', password: 'admin', role: 'admin' }
+  ];
 
   private _isLoggedIn$ = new BehaviorSubject<boolean>(this.hasStoredUser());
   readonly isLoggedIn$ = this._isLoggedIn$.asObservable();
@@ -21,30 +23,26 @@ export class AuthService {
 
   private currentUser: User | null = this.getCurrentUser();
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   private hasStoredUser(): boolean {
     return localStorage.getItem('user') !== null;
   }
 
-  login(creds: Credentials) {
-    // json-server: GET con query (nota: en producción sería POST y NUNCA en query)
-    return this.http
-      .get<User[]>(`${this.baseUrl}?name=${creds.name}&password=${creds.password}`)
-      .pipe(
-        map(users => {
-          const user = users[0];
-          if (user) {
-            this.currentUser = user;
-            localStorage.setItem('user', JSON.stringify(user));
-            this._user$.next(user); 
-            this._isLoggedIn$.next(true);
-            return true;
-          }
-          return false;
-        }),
-        catchError(() => of(false))
-      );
+  login(creds: Credentials): Observable<boolean> {
+    const foundUser = this.users.find(
+      u => u.name === creds.name && u.password === creds.password
+    );
+
+    if (foundUser) {
+      this.currentUser = foundUser;
+      localStorage.setItem('user', JSON.stringify(foundUser));
+      this._user$.next(foundUser);
+      this._isLoggedIn$.next(true);
+      return of(true);
+    }
+
+    return of(false);
   }
 
   logout(): void {
