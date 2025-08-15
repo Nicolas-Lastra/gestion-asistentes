@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, map, BehaviorSubject } from 'rxjs';
 import { Credentials, User } from '../entities';
+import { Store } from '@ngrx/store';
+import { AuthActions } from '../../app/store/auth/auth.actions';
+import { selectIsAdmin, selectIsLoggedIn, selectUser } from '../../app/store/auth/auth.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -12,21 +15,24 @@ export class AuthService {
     { name: 'user', password: 'user', role: 'user' },
     { name: 'admin', password: 'admin', role: 'admin' }
   ];
+  
+  readonly user$!: Observable<User | null>;
+  readonly isLoggedIn$!: Observable<boolean>;
+  readonly isAdmin$!: Observable<boolean>;
 
-  private _isLoggedIn$ = new BehaviorSubject<boolean>(this.hasStoredUser());
-  readonly isLoggedIn$ = this._isLoggedIn$.asObservable();
+  private currentUser: User | null = null;
 
-  private _user$ = new BehaviorSubject<User | null>(this.getCurrentUser());
-  readonly user$ = this._user$.asObservable();
+  constructor(private store: Store) {
+    this.user$ = this.store.select(selectUser);
+    this.isLoggedIn$ = this.store.select(selectIsLoggedIn);
+    this.isAdmin$ = this.store.select(selectIsAdmin);
 
-  readonly isAdmin$ = this.user$.pipe(map(u => u?.role === 'admin'));
+    this.user$.subscribe(u => { this.currentUser = u || null; });
 
-  private currentUser: User | null = this.getCurrentUser();
-
-  constructor() { }
-
-  private hasStoredUser(): boolean {
-    return localStorage.getItem('user') !== null;
+    // Hidratar desde localStorage al iniciar
+    const raw = localStorage.getItem('user');
+    const stored = raw ? (JSON.parse(raw) as User) : null;
+    this.store.dispatch(AuthActions.hydrateFromStorage({ user: stored }));
   }
 
   login(creds: Credentials): Observable<boolean> {
@@ -35,10 +41,8 @@ export class AuthService {
     );
 
     if (foundUser) {
-      this.currentUser = foundUser;
       localStorage.setItem('user', JSON.stringify(foundUser));
-      this._user$.next(foundUser);
-      this._isLoggedIn$.next(true);
+      this.store.dispatch(AuthActions.loginSuccess({ user: foundUser }));
       return of(true);
     }
 
@@ -47,20 +51,10 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('user');
-    this._user$.next(null);
-    this._isLoggedIn$.next(false);
+    this.store.dispatch(AuthActions.logout());
   }
 
-  isLoggedIn(): boolean {
-    return !!this._user$.value;
-  }
-
-  isAdmin(): boolean {
-    return this._user$.value?.role === 'admin';
-  }
-
-  getCurrentUser(): User | null {
-    const raw = localStorage.getItem('user');
-    return raw ? (JSON.parse(raw) as User) : null;
-  }
+  isLoggedIn(): boolean { return !!this.currentUser; }
+  isAdmin(): boolean { return this.currentUser?.role === 'admin'; }
+  getCurrentUser(): User | null { return this.currentUser; }
 }
