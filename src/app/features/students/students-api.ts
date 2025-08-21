@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { delay, Observable } from 'rxjs';
-import { Student } from '../../../shared/entities';
+import { Student, StudentCreate } from '../../../shared/entities';
 import { HttpClient } from '@angular/common/http';
 import { RoutePaths } from '../../../shared/routes';
 
@@ -23,6 +23,10 @@ export class StudentsAPI {
 
   editStudent(student: Student): Observable<Student> {
     return this.http.put<Student>(`${this.baseUrl}/${RoutePaths.STUDENTS}/${student.id}`, student).pipe(delay(1000));
+  }
+
+  createStudent(payload: StudentCreate): Observable<Student> {
+    return this.http.post<Student>(`${this.baseUrl}/${RoutePaths.STUDENTS}`, payload);
   }
 
 }
