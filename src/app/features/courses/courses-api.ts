@@ -24,4 +24,8 @@ export class CoursesApi {
   editCourse(course: Course): Observable<Course> {
     return this.http.put<Course>(`${this.baseUrl}/courses/${course.id}`, course).pipe(delay(1000));
   }
+
+  createCourse(payload: Omit<Course, 'id'>): Observable<Course> {
+    return this.http.post<Course>(`${this.baseUrl}${RoutePaths.COURSES}`, payload);
+  }
 }
