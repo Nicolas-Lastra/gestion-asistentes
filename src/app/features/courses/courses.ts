@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Course } from '../../../shared/entities';
 import { CoursesApi } from './courses-api';
-import { JsonPipe, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { CoursesTable } from './courses-table/courses-table';
 import { MatSnackBar } from '@angular/material/snack-bar';
