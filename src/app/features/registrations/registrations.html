@@ -1,1 +1,14 @@
-<p>registrations works!</p>
+<h2 class="mb-3">Registrations</h2>
+
+<mat-button-toggle-group [value]="view()" (change)="view.set($event.value)">
+  <mat-button-toggle value="student">Create Student</mat-button-toggle>
+  <mat-button-toggle value="course">Create Course</mat-button-toggle>
+</mat-button-toggle-group>
+
+<div class="mt-4">
+  @if (view() === 'student') {
+    <app-create-student-form />
+  } @else {
+    <app-create-course-form />
+  }
+</div>
