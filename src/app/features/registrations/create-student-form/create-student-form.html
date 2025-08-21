@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid gap-3" style="max-width: 560px;">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" />
+    @if (form.controls.name.touched && form.controls.name.invalid) {
+      <mat-error>Use a valid name (2 characters min)</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Surname</mat-label>
+    <input matInput formControlName="surname" />
+    @if (form.controls.surname.touched && form.controls.surname.invalid) {
+      <mat-error>Use a valid surname (2 characters min)</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>DNI</mat-label>
+    <input matInput formControlName="dni" />
+    @if (form.controls.dni.touched && form.controls.dni.invalid) {
+      <mat-error>Use a valid DNI (6–12 digits)</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" />
+    @if (form.controls.email.touched && form.controls.email.invalid) {
+      <mat-error>Invalid email</mat-error>
+    }
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="submitting || form.invalid">
+    {{ submitting ? 'Creating...' : 'Create student' }}
+  </button>
+</form>
