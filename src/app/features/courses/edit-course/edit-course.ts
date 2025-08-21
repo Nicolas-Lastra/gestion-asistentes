@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CoursesApi } from '../courses-api';
+import { RoutePaths } from '../../../../shared/routes';
 
 @Component({
   selector: 'app-edit-course',
@@ -30,7 +31,7 @@ export class EditCourse implements OnInit {
     this.course = navigation?.extras.state?.["course"];
 
     if (!this.course) {
-      this.router.navigate(['/courses']);
+      this.router.navigate([RoutePaths.COURSES]);
     }
   }
 
@@ -63,7 +64,7 @@ export class EditCourse implements OnInit {
             duration: 3000,
             panelClass: ['success-snackbar']
           });
-          this.router.navigate(['/courses']);
+          this.router.navigate([RoutePaths.COURSES]);
         },
         error: (err) => {
           this._snackbar.open('Failed to update course', 'Close', {

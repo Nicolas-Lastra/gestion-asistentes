@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { StudentsAPI } from '../students-api';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { RoutePaths } from '../../../../shared/routes';
 
 @Component({
   selector: 'app-edit-student',
@@ -30,7 +31,7 @@ export class EditStudent implements OnInit {
     this.student = navigation?.extras.state?.["student"];
 
     if (!this.student) {
-      this.router.navigate(['/students']);
+      this.router.navigate([RoutePaths.STUDENTS]);
     }
   }
 
@@ -65,7 +66,7 @@ export class EditStudent implements OnInit {
             duration: 3000,
             panelClass: ['success-snackbar']
           });
-          this.router.navigate(['/students']);
+          this.router.navigate([RoutePaths.STUDENTS]);
         },
         error: (err) => {
           this._snackbar.open('Failed to update student', 'Close', {
