@@ -1,0 +1,30 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="grid gap-3" style="max-width: 560px;">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" />
+    @if (form.controls.name.touched && form.controls.name.invalid) {
+      <mat-error>Use a valid name (3 characters min)</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Code</mat-label>
+    <input matInput formControlName="code" />
+    @if (form.controls.code.touched && form.controls.code.invalid) {
+      <mat-error>Use a valid code (3 characters min)</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Credits</mat-label>
+    <input matInput type="number" inputmode="numeric" min="0" step="1" formControlName="credits" />
+    @if (form.controls.credits.touched && form.controls.credits.invalid) {
+      <mat-error>Enter a valid number (0 or more)</mat-error>
+    }
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="submitting || form.invalid">
+    {{ submitting ? 'Creating...' : 'Create course' }}
+  </button>
+</form>
