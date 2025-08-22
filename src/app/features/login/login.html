@@ -4,14 +4,35 @@
   <mat-form-field appearance="fill">
     <mat-label>User</mat-label>
     <input matInput formControlName="name">
+
+    <mat-error *ngIf="loginForm.get('name')?.touched && loginForm.get('name')?.hasError('required')">
+      Username needed
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('name')?.touched && loginForm.get('name')?.hasError('minlength')">
+      4 characters min
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('name')?.touched && loginForm.get('name')?.hasError('maxlength')">
+      30 characters max
+    </mat-error>
+
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Password</mat-label>
     <input matInput type="password" formControlName="password">
+
+    <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')">
+      Password needed
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('minlength')">
+      4 characters min
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('maxlength')">
+      64 characters max
+    </mat-error>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">Log In</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Log In</button>
 
   <div *ngIf="loginError" style="color:red; margin-top: 10px;">
     Invalid user or password
