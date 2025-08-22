@@ -18,8 +18,8 @@ It uses **MockAPI** as a fake backend for domain data, while **authentication us
   - Route protection with `authGuard` and `isAdminGuard`
 
 - **Entities**
-  - **Students**: list, view, edit
-  - **Courses**: list, view, edit
+  - **Students**: list, view, edit, delete
+  - **Courses**: list, view, edit, delete
   - **Registrations**: student ↔ course creation
 
 - **UI**
