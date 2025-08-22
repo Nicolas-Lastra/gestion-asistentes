@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -7,7 +6,7 @@ import { CreateCourseForm } from './create-course-form/create-course-form';
 
 @Component({
   selector: 'app-registrations',
-  imports: [NgIf, MatTabsModule, MatButtonToggleModule, CreateStudentForm, CreateCourseForm],
+  imports: [MatTabsModule, MatButtonToggleModule, CreateStudentForm, CreateCourseForm],
   templateUrl: './registrations.html',
   styleUrl: './registrations.css'
 })
