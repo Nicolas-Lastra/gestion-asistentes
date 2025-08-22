@@ -1,11 +1,11 @@
 <div class="d-flex pt-4">
 
     <div class="flex-grow-1">
-        <div *ngIf="students; else loading">
+        <div *ngIf="students$ | async as students; else loading">
             <app-students-table
                 (deleteEvent)="deleteStudent($event)"
                 [students]="students"
-                [isAdmin]="isAdmin$ | async">
+                [isAdmin]="(isAdmin$ | async) ?? false">
             </app-students-table>
         </div>
 

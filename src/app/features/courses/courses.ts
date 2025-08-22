@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { CoursesTable } from './courses-table/courses-table';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { AuthService } from '../../../shared/services/auth-service';
 
 @Component({
@@ -17,30 +17,28 @@ import { AuthService } from '../../../shared/services/auth-service';
 export class Courses {
 
   isAdmin$!: Observable<boolean>;
+  courses$!: Observable<Course[]>;
 
-  courses!: Course[];
   constructor(private coursesApi: CoursesApi, private _snackBar: MatSnackBar, private auth: AuthService) {
     this.isAdmin$ = this.auth.isAdmin$;
-  }
-
-  ngOnInit() {
-    this.coursesApi.getCourses().subscribe(courses => {
-      this.courses = courses;
-    });
+    this.courses$ = this.coursesApi.getCourses();
   }
 
   deleteCourse(course: Course) {
 
-    this.coursesApi.deleteCourse(course).pipe(
+    this.courses$ = this.coursesApi.deleteCourse(course).pipe(
+      tap(() => {
+        this._snackBar.open('Course deleted successfully', 'Close', {
+          duration: 3000,
+          panelClass: ['success-snackbar']
+        });
+      }),
       switchMap(() => this.coursesApi.getCourses())
-    ).subscribe(courses => {
-      this.courses = courses;
-    }
     );
 
-    this._snackBar.open('Course deleted successfully', 'Close', {
-      duration: 3000,
-      panelClass: ['success-snackbar']
-    });
+    // this._snackBar.open('Course deleted successfully', 'Close', {
+    //   duration: 3000,
+    //   panelClass: ['success-snackbar']
+    // });
   }
 }

@@ -3,10 +3,9 @@ import { StudentsAPI } from './students-api';
 import { Student } from '../../../shared/entities';
 import { CommonModule } from '@angular/common';
 import { StudentsTable } from "./students-table/students-table";
-import { Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth-service';
 
 @Component({
@@ -18,31 +17,29 @@ import { AuthService } from '../../../shared/services/auth-service';
 export class Students {
 
   isAdmin$!: Observable<boolean>;
+  students$!: Observable<Student[]>;
 
-  students!: Student[];
-  constructor(private studentsApi: StudentsAPI, private _snackBar: MatSnackBar, private router: Router, private auth: AuthService) {
+  constructor(private studentsApi: StudentsAPI, private _snackBar: MatSnackBar, private auth: AuthService) {
     this.isAdmin$ = this.auth.isAdmin$;
-  }
-
-  ngOnInit() {
-    this.studentsApi.getStudents().subscribe(students => {
-      this.students = students;
-    });
+    this.students$ = this.studentsApi.getStudents();
   }
 
   deleteStudent(student: Student) {
 
-    this.studentsApi.deleteStudent(student).pipe(
+    this.students$ = this.studentsApi.deleteStudent(student).pipe(
+      tap(() => {
+        this._snackBar.open('Course deleted successfully', 'Close', {
+          duration: 3000,
+          panelClass: ['success-snackbar']
+        });
+      }),
       switchMap(() => this.studentsApi.getStudents())
-    ).subscribe(students => {
-      this.students = students;
-    }
     );
 
-    this._snackBar.open('Student deleted successfully', 'Close', {
-      duration: 3000,
-      panelClass: ['success-snackbar']
-    });
+    // this._snackBar.open('Student deleted successfully', 'Close', {
+    //   duration: 3000,
+    //   panelClass: ['success-snackbar']
+    // });
   }
 
 }
