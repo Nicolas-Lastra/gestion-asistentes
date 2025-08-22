@@ -31,12 +31,6 @@ export class Courses {
 
   deleteCourse(course: Course) {
 
-    this.coursesApi.deleteCourse(course).subscribe(() => {
-      this.coursesApi.getCourses().subscribe(courses => {
-        this.courses = courses;
-      })
-    });
-
     this.coursesApi.deleteCourse(course).pipe(
       switchMap(() => this.coursesApi.getCourses())
     ).subscribe(courses => {
