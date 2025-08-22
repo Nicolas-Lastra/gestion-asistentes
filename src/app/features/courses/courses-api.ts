@@ -26,6 +26,6 @@ export class CoursesApi {
   }
 
   createCourse(payload: Omit<Course, 'id'>): Observable<Course> {
-    return this.http.post<Course>(`${this.baseUrl}${RoutePaths.COURSES}`, payload);
+    return this.http.post<Course>(`${this.baseUrl}/${RoutePaths.COURSES}`, payload);
   }
 }
