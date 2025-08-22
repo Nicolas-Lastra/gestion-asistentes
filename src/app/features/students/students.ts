@@ -35,11 +35,6 @@ export class Students {
       }),
       switchMap(() => this.studentsApi.getStudents())
     );
-
-    // this._snackBar.open('Student deleted successfully', 'Close', {
-    //   duration: 3000,
-    //   panelClass: ['success-snackbar']
-    // });
   }
 
 }

@@ -35,10 +35,5 @@ export class Courses {
       }),
       switchMap(() => this.coursesApi.getCourses())
     );
-
-    // this._snackBar.open('Course deleted successfully', 'Close', {
-    //   duration: 3000,
-    //   panelClass: ['success-snackbar']
-    // });
   }
 }
